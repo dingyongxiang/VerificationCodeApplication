@@ -1,10 +1,11 @@
-package bajie.lishan.com.verificationcodeapplication;
+package com.yongxiang.testapplication;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 
-import bajie.lishan.com.verificationcodelibrary.VerificationCodeInput;
+import com.yongxiang.verificationview.VerificationCodeInput;
+
 
 public class MainActivity extends AppCompatActivity {
 
@@ -17,12 +18,12 @@ public class MainActivity extends AppCompatActivity {
         verificationCodeInput.setOnTextChangeListener(new VerificationCodeInput.Listener() {
             @Override
             public void onTextChange(String content) {
-                Log.d("VINPUT onTextChange",content);
+                Log.d("onTextChange",content);
             }
 
             @Override
             public void onTextComplete(String content) {
-                Log.d("VINPUT onTextComplete",content);
+                Log.d("onTextComplete",content);
             }
         });
     }

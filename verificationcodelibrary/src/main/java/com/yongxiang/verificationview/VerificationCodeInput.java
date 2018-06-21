@@ -1,4 +1,4 @@
-package bajie.lishan.com.verificationcodelibrary;
+package com.yongxiang.verificationview;
 
 
 import android.content.Context;

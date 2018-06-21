@@ -3,10 +3,9 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context="bajie.lishan.com.verificationcodeapplication.MainActivity">
+    android:layout_height="match_parent">
 
-    <bajie.lishan.com.verificationcodelibrary.VerificationCodeInput
+    <com.yongxiang.verificationview.VerificationCodeInput
         android:id="@+id/m_code_et"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
