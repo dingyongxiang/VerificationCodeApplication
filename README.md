@@ -1,13 +1,13 @@
 # VerificationCodeView
   高度自定义的验证码控件
 
- ![](./verificationview.png)
+ ![](./timebar_scale.gif)
 
  Usage
  -----
  1.在xml布局中引入：
 ```
-  <bajie.lishan.com.verificationcodelibrary.VerificationCodeInput
+  <com.yongxiang.verificationview.VerificationCodeInput
           android:id="@+id/m_code_et"
           android:layout_width="match_parent"
           android:layout_height="wrap_content"
