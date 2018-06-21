@@ -5,7 +5,7 @@ import android.content.Context;
 import android.content.res.TypedArray;
 import android.graphics.Color;
 import android.graphics.drawable.Drawable;
-import android.support.v7.widget.AppCompatEditText;
+
 import android.text.Editable;
 import android.text.InputType;
 import android.text.TextWatcher;
@@ -104,11 +104,8 @@ public class VerificationCodeInput extends LinearLayout {
             }
         };
 
-        /**
-         * 添加edittext 输入框
-         */
         for (int i = 0; i < box; i++) {
-            final AppCompatEditText editText = new AppCompatEditText(getContext());
+            final EditText editText = new EditText(getContext());
             LinearLayout.LayoutParams layoutParams = new LinearLayout.LayoutParams(boxWidth, boxHeight);
             layoutParams.bottomMargin = childVPadding;
             layoutParams.topMargin = childVPadding;
@@ -149,9 +146,6 @@ public class VerificationCodeInput extends LinearLayout {
 
     }
 
-    /**
-     * 是上一个框获取焦点
-     */
     private void backFocus() {
         int count = getChildCount();
         EditText editText;
@@ -165,9 +159,6 @@ public class VerificationCodeInput extends LinearLayout {
         }
     }
 
-    /**
-     * 使下一个框获取焦点
-     */
     private void focus() {
         int count = getChildCount();
         EditText editText;
