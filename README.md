@@ -1,7 +1,7 @@
 # VerificationCodeView
   高度自定义的验证码控件
 
- ![](./timebar_scale.gif)
+ ![](./verificationview.png)
 
  Usage
  -----
