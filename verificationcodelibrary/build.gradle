@@ -1,16 +1,17 @@
 apply plugin: 'com.android.library'
-apply plugin:'com.github.dcendents.android-maven'
-apply plugin:'com.jfrog.bintray'
+apply plugin: 'com.github.dcendents.android-maven'
+apply plugin: 'com.jfrog.bintray'
 
-version="1.0.0"
+/*version = "1.0.2"
+group = 'com.yongxiang.customview'*/
 
 android {
     compileSdkVersion 26
     defaultConfig {
         minSdkVersion 19
         targetSdkVersion 26
-        versionCode 1
-        versionName "1.0"
+        versionCode 102
+        versionName "1.0.2"
 
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
 
@@ -32,33 +33,37 @@ dependencies {
     implementation 'com.android.support:appcompat-v7:26.1.0'
 }
 
-def siteUrl='https://github.com/dingyongxiang/VerificationCodeApplication' // github上项目的地址
-def gitUrl='https://github.com/dingyongxiang/VerificationCodeApplication.git' //github上项目的git地址
-group='com.yongxiang.verificationview'
+
+/*def siteUrl = 'https://github.com/dingyongxiang/VerificationCodeApplication' // github上项目的地址
+def gitUrl = 'https://github.com/dingyongxiang/VerificationCodeApplication.git' //github上项目的git地址
+
+
 //一般用你项目的Application Id，这里一般用到哪里呢。
 //举一个使用RecyclerView需要添加的依赖，compile'com.android.support:recyclerview-v7:25.3.1'
 //com.android.support对应的就是上面的group，recyclerview-v7对应的就是module名字，25.3.1对应的是上面的version
 
-install{
-    repositories.mavenInstaller{
+install {
+    repositories.mavenInstaller {
         pom {
-            project{
-                packaging'aar'
+            project {
+                packaging 'aar'
                 // Add your description here
-                name'VerificationCodeView'
+                name 'VerificationCodeView'
+                groupId "com.yongxiang.customview"
+                artifactId "verificationview"
                 url siteUrl
                 // Set your license
                 licenses {
                     license {
-                        name'The Apache Software License, Version 2.0'
-                        url'http://www.apache.org/licenses/LICENSE-2.0.txt'
+                        name 'The Apache Software License, Version 2.0'
+                        url 'http://www.apache.org/licenses/LICENSE-2.0.txt'
                     }
                 }
-                developers{
+                developers {
                     developer {
-                        id'yongxiang'//填写的一些基本信息
-                        name'dingyongxiang'
-                        email'yongxiang928@gmail.com'
+                        id 'yongxiang'//填写的一些基本信息
+                        name 'dingyongxiang'
+                        email 'yongxiang928@gmail.com'
                     }
                 }
                 scm {
@@ -72,14 +77,14 @@ install{
 }
 task sourcesJar(type: Jar) {
     from android.sourceSets.main.java.srcDirs
-    classifier='sources'
+    classifier = 'sources'
 }
 task javadoc(type: Javadoc) {
-    source= android.sourceSets.main.java.srcDirs
-    classpath+=project.files(android.getBootClasspath().join(File.pathSeparator))
+    source = android.sourceSets.main.java.srcDirs
+    classpath += project.files(android.getBootClasspath().join(File.pathSeparator))
 }
-task javadocJar(type: Jar,dependsOn: javadoc) {
-    classifier='javadoc'
+task javadocJar(type: Jar, dependsOn: javadoc) {
+    classifier = 'javadoc'
     from javadoc.destinationDir
 }
 artifacts {
@@ -94,12 +99,13 @@ bintray {
     key = properties.getProperty("bintray.apikey")
     configurations = ['archives']
     pkg {
-        repo ="maven"
-        name ="verificationview"//发布到JCenter上的项目名字
+        repo = "maven"
+        name = "verificationview"//发布到JCenter上的项目名字
         websiteUrl = siteUrl
         vcsUrl = gitUrl
         licenses = ["Apache-2.0"]
-        publish =true
+        publish = true
     }
-}
+}*/
 
+apply from: "bintrayUpload.gradle"
