@@ -1,14 +1,12 @@
 apply plugin: 'com.android.library'
-apply plugin: 'com.github.dcendents.android-maven'
-apply plugin: 'com.jfrog.bintray'
+
 android {
     compileSdkVersion 26
     defaultConfig {
         minSdkVersion 19
         targetSdkVersion 26
-        versionCode 103
-        versionName "1.0.3"
-        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+        versionCode 106
+        versionName "1.0.6"
     }
 
     buildTypes {
@@ -26,3 +24,5 @@ dependencies {
     implementation 'com.android.support:appcompat-v7:26.1.0'
 }
  apply from: "bintrayUpload.gradle"
+
+//apply plugin: "com.vanniktech.maven.publish"

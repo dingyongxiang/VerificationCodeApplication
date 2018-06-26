@@ -1,48 +1,24 @@
 apply plugin: 'com.github.dcendents.android-maven'
 apply plugin: 'com.jfrog.bintray'
+// 这个version是区分library版本的，因此当我们需要更新library时记得修改这个version
+// 这个version影响后面的引用
+version = "1.0.6"
 
-// load properties
-Properties properties = new Properties()
-File localPropertiesFile = project.file("local.properties")
-if(localPropertiesFile.exists()){
-    properties.load(localPropertiesFile.newDataInputStream())
-}
-File projectPropertiesFile = project.file("project.properties")
-if(projectPropertiesFile.exists()){
-    properties.load(projectPropertiesFile.newDataInputStream())
-}
-
-// read properties
-def projectName = properties.getProperty("project.name")
-def projectGroupId = properties.getProperty("project.groupId")
-def projectArtifactId = properties.getProperty("project.artifactId")
-def projectVersionName = android.defaultConfig.versionName
-def projectPackaging = properties.getProperty("project.packaging")
-def projectSiteUrl = properties.getProperty("project.siteUrl")
-def projectGitUrl = properties.getProperty("project.gitUrl")
-
-def developerId = properties.getProperty("developer.id")
-def developerName = properties.getProperty("developer.name")
-def developerEmail = properties.getProperty("developer.email")
-
-def bintrayUser = properties.getProperty("bintray.user")
-def bintrayApikey = properties.getProperty("bintray.apikey")
-
-def javadocName = properties.getProperty("javadoc.name")
-
-group = projectGroupId
-
-// This generates POM.xml with proper parameters
+def siteUrl = 'https://github.com/dingyongxiang/VerificationCodeApplication'   // 项目的主页
+def gitUrl = 'https://github.com/dingyongxiang/VerificationCodeApplication.git'   // Git仓库的url
+group = "com.yongxiang.customview"            // Maven Group ID for the artifact，一般填你唯一的包名
 install {
     repositories.mavenInstaller {
+        // This generates POM.xml with proper parameters
         pom {
             project {
-                name projectName
-                groupId projectGroupId
-                artifactId projectArtifactId
-                version projectVersionName
-                packaging projectPackaging
-                url projectSiteUrl
+                groupId 'com.yongxiang.customview'
+                artifactId 'verificationview'
+                packaging 'aar'
+                // Add your description here
+                name 'a Verificationcode View'     //项目的描述 你可以多写一点
+                url siteUrl
+                // Set your license
                 licenses {
                     license {
                         name 'The Apache Software License, Version 2.0'
@@ -51,73 +27,47 @@ install {
                 }
                 developers {
                     developer {
-                        id developerId
-                        name developerName
-                        email developerEmail
+                        id 'yongxiang'      //填写的一些基本信息
+                        name 'dingyongxiang'
+                        email '17730018835@163.com'
                     }
                 }
                 scm {
-                    connection projectGitUrl
-                    developerConnection projectGitUrl
-                    url projectSiteUrl
+                    connection gitUrl
+                    developerConnection gitUrl
+                    url siteUrl
                 }
             }
         }
     }
 }
-
-
 task sourcesJar(type: Jar) {
     from android.sourceSets.main.java.srcDirs
     classifier = 'sources'
 }
-
 task javadoc(type: Javadoc) {
     source = android.sourceSets.main.java.srcDirs
     classpath += project.files(android.getBootClasspath().join(File.pathSeparator))
 }
-
-// Add compile dependencies to javadoc
-afterEvaluate {
-    javadoc.classpath += files(android.libraryVariants.collect { variant ->
-        variant.javaCompile.classpath.files
-    })
-}
-
-// This generates javadoc.jar
 task javadocJar(type: Jar, dependsOn: javadoc) {
     classifier = 'javadoc'
     from javadoc.destinationDir
 }
-
-
 artifacts {
     archives javadocJar
     archives sourcesJar
 }
-
-// javadoc configuration
-javadoc {
-    options{
-        encoding "UTF-8"
-        charSet 'UTF-8'
-        author true
-        version projectVersionName
-        links "http://docs.oracle.com/javase/7/docs/api"
-        title javadocName
-    }
-}
-
-// bintray configuration
+Properties properties = new Properties()
+properties.load(project.rootProject.file('local.properties').newDataInputStream())
 bintray {
-    user = bintrayUser
-    key = bintrayApikey
+    user = properties.getProperty("bintray.user")
+    key = properties.getProperty("bintray.apikey")
     configurations = ['archives']
     pkg {
         repo = "maven"
-        name = projectName
-        websiteUrl = projectSiteUrl
-        vcsUrl = projectGitUrl
+        name = "verificationview"   //发布到JCenter上的项目名字
+        websiteUrl = siteUrl
+        vcsUrl = gitUrl
         licenses = ["Apache-2.0"]
         publish = true
     }
